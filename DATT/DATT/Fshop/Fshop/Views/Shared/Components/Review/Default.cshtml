@@ -1,0 +1,31 @@
+﻿@model IList<Review>
+
+<!-- testimonail-section -->
+<div class="testimonail-section mt-80 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 text-center">
+                <div class="testimonial-sliders">
+                    @foreach (var testimonial in Model)
+                    {
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="@testimonial.Images" alt="Avatar">
+                            </div>
+                            <div class="client-meta">
+                                <h3>@testimonial.Author <span>@testimonial.Title</span></h3>
+                                <p class="testimonial-body">
+                                    @testimonial.Contents
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end testimonail-section -->

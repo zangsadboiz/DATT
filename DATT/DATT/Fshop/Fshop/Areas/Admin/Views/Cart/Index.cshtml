@@ -1,0 +1,59 @@
+﻿@using Fshop.Models;
+@model IList<Cart>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle" style="background-color: #f8f9fa; padding: 20px;">
+        <h2 style="color: #343a40;">Danh sách giỏ hàng</h2>
+    </div>
+
+    <div class="container shadow p-5" style="background-color: #f8f9fa; border-radius: 10px;">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales" style="border: none;">
+                    <div class="card-body mt-4">
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Tên sản phẩm</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-center">Giá</th>
+                                    <th class="text-center">Hình ảnh</th>
+                                    <th class="text-center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center" scope="row">@item.CartID</th>
+                                        <td style="text-align: center;">
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="Details"
+                                               asp-route-id="@item.ProductID" class="text-primary">@item.ProductName</a>
+                                        </td>
+                                        <td class="text-center">@item.Quantity</td>
+                                        <td class="text-center">@item.Price</td>
+                                        <td class="text-center">
+                                            <img src="@item.Images" alt="Hình ảnh" style="max-width: 50px; max-height: 50px;" />
+                                        </td>
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="Cart" asp-action="Edit"
+                                               asp-route-id="@item.CartID" class="btn btn-dark btn-sm"
+                                               title="Sửa sản phẩm trong giỏ hàng"><i class="bi bi-pencil"></i></a>
+                                            <a asp-area="Admin" asp-controller="Cart" asp-action="Delete"
+                                               asp-route-id="@item.CartID" class="btn btn-light"
+                                               title="Xóa sản phẩm ra giỏ hàng"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,64 @@
+﻿@using Fshop.Models;
+@model IList<Review>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh sách đánh giá</h2>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <a type="button" class="btn btn-dark" asp-area="Admin" asp-controller="Review" asp-action="Create">
+                <i class="bi bi-file-earmark-text me-1"></i> Thêm đánh giá
+            </a>
+        </div>
+    </div>
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body mt-4">
+                        <div class="table-responsive">
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1">#</th>
+                                        <th class="col-2">Tác giả</th>
+                                        <th class="col-2">Tiêu đề</th>
+                                        <th class="col-1">Hình ảnh</th>
+                                        <th class="col-1">Trạng thái</th>
+                                        <th class="col-1">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var review in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@review.ReviewID</th>
+                                            <td>@review.Author</td>
+                                            <td>@review.Title</td>
+                                            <td>
+                                                <img src="@review.Images" alt="Hình ảnh" style="max-width: 50px; max-height: 50px;" />
+                                            </td>
+                                            <td>@review.IsActive</td>
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="Review" asp-action="Edit" asp-route-id="@review.ReviewID"
+                                                   class="btn btn-dark" title="Sửa Review"><i class="bi bi-pencil"></i> Sửa</a>
+
+                                                <a asp-area="Admin" asp-controller="Review" asp-action="Delete" asp-route-id="@review.ReviewID"
+                                                   class="btn btn-light" title="Xóa Review"><i class="bi bi-trash"></i> Xóa</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
